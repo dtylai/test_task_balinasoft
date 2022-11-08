@@ -9,15 +9,13 @@ import UIKit
 
 class PhotoTypesViewController: UIViewController {
     var photoTypesModel = PhotoTypesModel()
-    var isLoading = false
-    var pageNumb = 0
     
     @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        photoTypesModel.getPhotoTypes(page: pageNumb.description) { [weak self] error in
+        photoTypesModel.getPhotoTypes(page: photoTypesModel.getPageNumb().description) { [weak self] error in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -30,13 +28,13 @@ class PhotoTypesViewController: UIViewController {
     }
     
     func loadMoreData() {
-        if !self.isLoading && pageNumb <= photoTypesModel.response?.totalPages ?? 7 {
-            self.isLoading = true
-            pageNumb += 1
+        if !photoTypesModel.getIsLoading() && photoTypesModel.getPageNumb() <= photoTypesModel.response?.totalPages ?? 7 {
+            photoTypesModel.setIsLoading(isLoading: true)
+            photoTypesModel.setPageNumb(pageNumb: photoTypesModel.getPageNumb()+1)
             DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)) {
-                self.photoTypesModel.getPhotoTypes(page: self.pageNumb.description) { [weak self] error in
+                self.photoTypesModel.getPhotoTypes(page: self.photoTypesModel.getPageNumb().description) { [weak self] error in
                     DispatchQueue.main.async {
-                        self?.isLoading = false
+                        self?.photoTypesModel.setIsLoading(isLoading: false)
                         self?.tableView.reloadData()
                     }
                 }
@@ -48,11 +46,28 @@ class PhotoTypesViewController: UIViewController {
 extension PhotoTypesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        photoTypesModel.setIdCell(idCell: indexPath.item)
+        let imagePickerController = UIImagePickerController()
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        let actionSheet = UIAlertController(title: nil,
+                                            message: nil,
+                                            preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+            self.chooseImagePicker(source: .camera)
+        }
+        let photo = UIAlertAction(title: "Photo", style: .default) { _ in
+            self.chooseImagePicker(source: .photoLibrary)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(camera)
+        actionSheet.addAction(photo)
+        actionSheet.addAction(cancel)
+        present(actionSheet, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == photoTypesModel.content.count - 20, !isLoading {
+        if indexPath.row == photoTypesModel.content.count - 1, !photoTypesModel.getIsLoading() {
             loadMoreData()
         }
     }
@@ -72,10 +87,10 @@ extension PhotoTypesViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: photoTypesModel.loadingCellIndentifier, for: indexPath) as? LoadingCell else {
                 preconditionFailure("Could not cast value of type 'UITableViewCell' to LoadingCell")
             }
-            if isLoading {
-                cell.activityIndicator.startAnimating()
+            if photoTypesModel.getIsLoading() {
+                cell.startActivity()
             } else {
-                cell.activityIndicator.stopAnimating()
+                cell.stopActivity()
             }
             return cell
         }
@@ -104,4 +119,24 @@ extension PhotoTypesViewController: UITableViewDataSource {
     }
 }
 
+extension PhotoTypesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            photoTypesModel.uploadPhoto(typeId: photoTypesModel.getIdCell(), name: "Dmitry Tulay", image: image) { error in
+            }
+        }
+        dismiss(animated: true)
+    }
+}
 

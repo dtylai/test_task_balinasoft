@@ -8,9 +8,13 @@
 import UIKit
 
 class LoadingCell: UITableViewCell {
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    override class func awakeFromNib() {
-        super.awakeFromNib()
+    func startActivity() {
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivity() {
+        self.activityIndicator.stopAnimating()
     }
 }

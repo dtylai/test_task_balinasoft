@@ -13,4 +13,6 @@ protocol NetworkManagerProtocol {
         service: URLRequestProviderProtocol,
         decodeType: U.Type,
         completion: @escaping(Result<U, Error>) -> Void)
+    
+    func request (service: URLRequestProviderProtocol, completion: @escaping(Result<Data?, Error>) -> Void)
 }

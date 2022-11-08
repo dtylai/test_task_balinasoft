@@ -5,7 +5,7 @@
 //  Created by Dmitry Tulay on 11/8/22.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 
 extension String: ParameterEncoding {
@@ -66,8 +66,18 @@ extension URLRequestProvider {
             request = try URLEncoding.default.encode(request, with: parameters)
         case .post:
             request.allHTTPHeaderFields = headers
-            let jsonData = try? JSONSerialization.data(withJSONObject: body)
-            request.httpBody = jsonData
+            var flag = false
+            body.map { bodyy in
+                if let image = bodyy["photo"] as? UIImage {
+                    flag = true
+                    let data = image.pngData()!
+                    request.httpBody = data
+                } else { flag = false }
+                if !flag {
+                    let jsonData = try? JSONSerialization.data(withJSONObject: bodyy)
+                    request.httpBody! += jsonData!
+                }
+            }
         }
         return request
     }
