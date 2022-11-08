@@ -47,8 +47,6 @@ extension PhotoTypesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         photoTypesModel.setIdCell(idCell: indexPath.item)
-        let imagePickerController = UIImagePickerController()
-        
         tableView.deselectRow(at: indexPath, animated: true)
         let actionSheet = UIAlertController(title: nil,
                                             message: nil,
@@ -130,6 +128,7 @@ extension PhotoTypesViewController: UIImagePickerControllerDelegate, UINavigatio
             present(imagePicker, animated: true)
         }
     }
+    
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.editedImage] as? UIImage {
