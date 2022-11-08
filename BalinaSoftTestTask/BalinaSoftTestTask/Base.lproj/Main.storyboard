@@ -22,6 +22,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="aAI-d2-0vo"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="St8-iz-FTP"/>
+                                    <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="ktb-1j-oUC"/>
                                 </connections>
                             </tableView>
                         </subviews>
