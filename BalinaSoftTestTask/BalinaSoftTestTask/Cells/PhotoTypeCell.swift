@@ -18,7 +18,7 @@ class PhotoTypeCell: UITableViewCell {
         typeLable.text = content.name
         
         guard let urlString = content.image else {
-            let image = UIImage(named: "standartImage")
+            let image = UIImage(named: "standartimage")
             photo.image = image
             return
         }
