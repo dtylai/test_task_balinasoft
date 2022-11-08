@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0597A533291A38FD00AAAB33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A532291A38FD00AAAB33 /* AppDelegate.swift */; };
 		0597A535291A38FD00AAAB33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A534291A38FD00AAAB33 /* SceneDelegate.swift */; };
-		0597A537291A38FD00AAAB33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A536291A38FD00AAAB33 /* ViewController.swift */; };
+		0597A537291A38FD00AAAB33 /* PhotoTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A536291A38FD00AAAB33 /* PhotoTypesViewController.swift */; };
 		0597A53A291A38FD00AAAB33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0597A538291A38FD00AAAB33 /* Main.storyboard */; };
 		0597A53C291A390100AAAB33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0597A53B291A390100AAAB33 /* Assets.xcassets */; };
 		0597A53F291A390100AAAB33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0597A53D291A390100AAAB33 /* LaunchScreen.storyboard */; };
@@ -17,6 +17,8 @@
 		0597A554291A390100AAAB33 /* BalinaSoftTestTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A553291A390100AAAB33 /* BalinaSoftTestTaskUITests.swift */; };
 		0597A556291A390100AAAB33 /* BalinaSoftTestTaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A555291A390100AAAB33 /* BalinaSoftTestTaskUITestsLaunchTests.swift */; };
 		0597A564291A3E0700AAAB33 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0597A563291A3E0700AAAB33 /* Alamofire */; };
+		0597A567291A446300AAAB33 /* PhotoTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597A566291A446300AAAB33 /* PhotoTypeCell.swift */; };
+		0597A569291A448700AAAB33 /* PhotoTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0597A568291A448700AAAB33 /* PhotoTypeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 		0597A52F291A38FD00AAAB33 /* BalinaSoftTestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalinaSoftTestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0597A532291A38FD00AAAB33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0597A534291A38FD00AAAB33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0597A536291A38FD00AAAB33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0597A536291A38FD00AAAB33 /* PhotoTypesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTypesViewController.swift; sourceTree = "<group>"; };
 		0597A539291A38FD00AAAB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0597A53B291A390100AAAB33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0597A53E291A390100AAAB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		0597A54F291A390100AAAB33 /* BalinaSoftTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BalinaSoftTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0597A553291A390100AAAB33 /* BalinaSoftTestTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalinaSoftTestTaskUITests.swift; sourceTree = "<group>"; };
 		0597A555291A390100AAAB33 /* BalinaSoftTestTaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalinaSoftTestTaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0597A566291A446300AAAB33 /* PhotoTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTypeCell.swift; sourceTree = "<group>"; };
+		0597A568291A448700AAAB33 /* PhotoTypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTypeCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +105,10 @@
 		0597A531291A38FD00AAAB33 /* BalinaSoftTestTask */ = {
 			isa = PBXGroup;
 			children = (
+				0597A565291A444E00AAAB33 /* Cells */,
 				0597A532291A38FD00AAAB33 /* AppDelegate.swift */,
 				0597A534291A38FD00AAAB33 /* SceneDelegate.swift */,
-				0597A536291A38FD00AAAB33 /* ViewController.swift */,
+				0597A536291A38FD00AAAB33 /* PhotoTypesViewController.swift */,
 				0597A538291A38FD00AAAB33 /* Main.storyboard */,
 				0597A53B291A390100AAAB33 /* Assets.xcassets */,
 				0597A53D291A390100AAAB33 /* LaunchScreen.storyboard */,
@@ -127,6 +132,15 @@
 				0597A555291A390100AAAB33 /* BalinaSoftTestTaskUITestsLaunchTests.swift */,
 			);
 			path = BalinaSoftTestTaskUITests;
+			sourceTree = "<group>";
+		};
+		0597A565291A444E00AAAB33 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0597A566291A446300AAAB33 /* PhotoTypeCell.swift */,
+				0597A568291A448700AAAB33 /* PhotoTypeCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +255,7 @@
 			files = (
 				0597A53F291A390100AAAB33 /* LaunchScreen.storyboard in Resources */,
 				0597A53C291A390100AAAB33 /* Assets.xcassets in Resources */,
+				0597A569291A448700AAAB33 /* PhotoTypeCell.xib in Resources */,
 				0597A53A291A38FD00AAAB33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,8 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0597A537291A38FD00AAAB33 /* ViewController.swift in Sources */,
+				0597A537291A38FD00AAAB33 /* PhotoTypesViewController.swift in Sources */,
 				0597A533291A38FD00AAAB33 /* AppDelegate.swift in Sources */,
+				0597A567291A446300AAAB33 /* PhotoTypeCell.swift in Sources */,
 				0597A535291A38FD00AAAB33 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
